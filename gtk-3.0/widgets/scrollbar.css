@@ -44,7 +44,7 @@ GtkHTML .scrollbars-junction,
 GtkHTML .scrollbar.trough,
 GtkHTML .scrollbar.trough.vertical,
 GtkHTML .scrollbar.trough.horizontal {
-    background-color: @theme_base_color;
+    background-color: transparent;
     border-color: transparent;
 }
 
