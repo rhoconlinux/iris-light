@@ -54,7 +54,7 @@ GtkHTML .scrollbar.trough.horizontal {
 .scrollbar.button.vertical {
     color: @theme_text_color;
     background-image: none;
-    background-color: @theme_selected_bg_color;    
+    background-color: transparent;    
 
     border-radius: 11px 11px 11px 11px;
 
