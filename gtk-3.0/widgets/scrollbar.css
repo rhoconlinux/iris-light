@@ -2,71 +2,142 @@
  * scrollbar *
  *************/
 .scrollbar {
-    border-width: 0px;
-    border-style: none;
-    padding: 0;
+    -GtkRange-trough-border: 0;
+    -GtkScrollbar-has-backward-stepper: false;
+    -GtkScrollbar-has-forward-stepper: false;
+    -GtkRange-slider-width: 10;
+    -GtkScrollbar-min-slider-length: 30;
+
+    -GtkRange-stepper-spacing: 0;
+    -GtkRange-trough-under-steppers: 1;
+
+    background-image: none;
+    background-color: #00f;
+    
+    padding: 0px 2px 0px 2px;
+    
+    border-radius: 0;
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+    
+    box-shadow: none;
 }
 
 .scrollbars-junction,
-.scrollbar.trough {
-    border-width: 0;
-    border-radius: 0;
+.scrollbar.trough,
+.scrollbar.trough.vertical,
+.scrollbar.trough.horizontal {
+    background-image: none;
     background-color: @theme_bg_color;
-    background-image: none;
-}
 
-.scrollbar.button,
-.scrollbar.button:active,
-.scrollbar.button:active:hover {
-    border-width: 0;
     border-radius: 0;
-    background-color: transparent;
-    background-image: none;
-    color: shade(@theme_bg_color, 0.6);
-}
-
-.scrollbar.slider {
+    border-style: solid;
     border-width: 1px;
-    border-color: mix(shade(@theme_bg_color, 0.87), @theme_fg_color, 0.21);
-    border-radius: 0;
-    background-color: mix(@theme_bg_color, @theme_fg_color, 0.21);
+    border-color: transparent;
+
+    box-shadow: none;
+}
+
+GtkHTML .scrollbar,
+GtkHTML .scrollbars-junction,
+GtkHTML .scrollbar.trough,
+GtkHTML .scrollbar.trough.vertical,
+GtkHTML .scrollbar.trough.horizontal {
+    background-color: @theme_base_color;
+    border-color: transparent;
+}
+
+.scrollbar.slider,
+.scrollbar.button,
+.scrollbar.slider.vertical,
+.scrollbar.button.vertical {
+    color: @theme_text_color;
+    background-image: none;
+    background-color: @theme_selected_bg_color;    
+
+    border-radius: 11px 11px 11px 11px;
+
+    
+    border-color:transparent;
+    /*border-top-color: alpha(@light_shadow, 0.2);
+    border-left-color: shade(@theme_selected_bg_color, 0.85);
+    border-right-color: alpha(@theme_selected_bg_color, 0.2);
+    border-bottom-color: alpha(@light_shadow, 0.4);
+*/
+  /*  box-shadow: inset 1px 0 alpha(@theme_selected_bg_color, 0.4),
+		inset 0 1px alpha(@theme_selected_bg_color, 0.2),
+		inset 0 -1px alpha(@theme_selected_bg_color, 0.2);*/
+}
+
+.scrollbar.background,
+.scrollbar.slider.background,
+.scrollbar.button.background,
+.scrollbar.trough.background {
+    background-color: @theme_bg_color;
+}
+
+.scrollbar.slider.horizontal,
+.scrollbar.button.horizontal {
+   color: @theme_text_color;
+    background-image: none;
+    background-color: @theme_selected_bg_color;    
+
+    border-radius: 11px 11px 11px 11px;
+    border-top-color: alpha(@light_shadow, 0.2);
+    border-left-color: shade(@theme_selected_bg_color, 0.85);
+    border-right-color: alpha(@theme_selected_bg_color, 0.2);
+    border-bottom-color: alpha(@light_shadow, 0.4);
+
+    box-shadow: inset 1px 0 alpha(@theme_selected_bg_color, 0.4),
+		inset 0 1px alpha(@theme_selected_bg_color, 0.2),
+		inset 0 -1px alpha(@theme_selected_bg_color, 0.2);
 }
 
 .scrollbar.slider:hover,
 .scrollbar.slider.vertical:hover {
-    border-color: mix(shade(@theme_bg_color, 0.87), @theme_fg_color, 0.31);
-    background-color: mix(@theme_bg_color, @theme_fg_color, 0.31);
+
 }
 
-.scrollbar.slider:active,
-.scrollbar.slider.vertical:active {
-    border-color: shade(@theme_selected_fg_color, 0.9);
-    background-color: @theme_selected_fg_color;
+.scrollbar.slider.horizontal:hover {
+
 }
 
-.scrollbar.slider.fine-tune:prelight:active {
-      background-size: 50%;
-      background-repeat: no-repeat;
-      background-position: center;
+.scrollbar.button:insensitive,
+.scrollbar.button.vertical:insensitive {
+
+}
+
+.scrollbar.button.horizontal:insensitive {
+
 }
 
 /* overlay scrollbar */
+OsThumb.background {
+    background-color: @theme_selected_bg_color;
+}
+
+OsScrollbar {
+    color: shade(@theme_bg_color, 0.6);
+    /* background-color: shade(@theme_selected_bg_color, 0.88); */
+}
+
 OsThumb {
-    color: shade(@theme_bg_color, 0.7);
+    color: shade(@theme_bg_color, 0.6);
 }
 
 OsThumb:selected,
 OsScrollbar:selected {
-    background-color: @theme_selected_fg_color;
+    background-color: @theme_selected_bg_color;
 }
 
 OsThumb:active,
 OsScrollbar:active {
-    background-color: @theme_selected_fg_color;
+    background-color: shade(@theme_base_color, 0.88);
 }
 
 OsThumb:insensitive,
 OsScrollbar:insensitive {
-    background-color: shade(@theme_bg_color, 0.9);
+    background-color: shade(@theme_bg_color, 0.88);
 }
 
