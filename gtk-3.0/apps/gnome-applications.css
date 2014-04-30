@@ -14,6 +14,7 @@ PanelApplet {
     border-width: 0;
 }
 
+
 PanelSeparator {
     border-width: 0;
     background-color: @panel_bg_color;
@@ -104,18 +105,19 @@ WnckPager, WnckTasklist {
 }
 
 NautilusWindow .toolbar {
-    border-width: 0 0 1px;
+    border-width: 0 0 0px;
     border-style: solid;
     border-color: shade(@toolbar_bg_color, 0.8);
 }
 
 NautilusWindow .sidebar .frame {
     border-style: none;
+    border-width: 0px;
 }
 
 NautilusWindow > GtkGrid > .pane-separator,
 NautilusWindow > GtkGrid > .pane-separator:hover {
-    border-width: 0 1px 0 0;
+    border-width: 0 0px 0 0;
     border-style: solid;
     border-color: shade(@theme_bg_color, 0.8);
     background-color: @theme_bg_color;
@@ -139,7 +141,7 @@ NautilusQueryEditor .primary-toolbar.toolbar {
 NautilusQueryEditor .toolbar {
     padding-top: 3px;
     padding-bottom: 2px;
-    border-width: 1px 0 0 0;
+    border-width: 0px 0 0 0;
     border-style: solid;
     border-color: @toolbar_bg_color;
     background-color: shade(@toolbar_bg_color, 0.9);
@@ -151,9 +153,40 @@ NautilusQueryEditor .toolbar:nth-child(2) {
 
 NautilusQueryEditor .toolbar:last-child,
 NautilusQueryEditor .primary-toolbar.toolbar:only-child {
-    border-bottom-width: 1px;
+    border-bottom-width: 0px;
     border-bottom-color: shade(@toolbar_bg_color, 0.8);
 }
+
+
+NautilusWindow .sidebar .frame {
+    border-width: 0px;
+
+    border-top-color: shade(@theme_bg_color, 0.88);
+       padding: 0px 6px 0px 10px; /*awesome: fixes the slection on the nautilus sidebar: espaciado izquierdo de los items en la sidebar */ 
+    border-style: none;	
+
+}
+
+
+NautilusNotebook .frame { /*ventana central de nautilus, el frame es la garcha de borde del lado de adentro*/
+    border-width: 0px; /*fixed: forzado a cero para que funcione el fix del scroll... puede ser interesante esta feature*/
+}
+
+
+NautilusWindow > GtkTable > .pane-separator,
+NautilusWindow .pane-separator {
+    background-color: @sidebar_background;
+    /* border-color: @sidebar_background; */
+    border-style: none;
+    border-width: 0px;
+    background-image: -gtk-gradient(linear,
+                                    left top, right top,
+                                    from (@sidebar_background),
+                                    color-stop (0.50, @sidebar_background),
+                                    to   (shade(@theme_bg_color, 0.65)));
+}
+
+
 
 /******************
  * gnome terminal *
@@ -388,3 +421,148 @@ GthToolbox .button:active:hover {
     background-color: @theme_bg_color;
     color: shade(@theme_selected_fg_color, 1.15);
 }
+
+
+
+
+/**************
+ * Tweak tool *
+ **************/
+/* the sidebar */
+.tweak-categories { /*main sidebar box*/
+    padding: 0px 0px 0px 0px;
+
+    background-image: -gtk-gradient( linear, left top, right top,
+        
+        from (@theme_bg_color),
+	color-stop (0.99, shade(@theme_bg_color, 1.0)),
+        to (shade(@theme_bg_color,  1.0)));
+
+    border-width: 1px 0px 1px 0px;
+    border-color: @theme_bg_color;
+    box-shadow: inset 0 1px transparent;
+
+    color: @theme_fg_color;
+    text-shadow: 0 1px transparent;
+}
+
+.tweak-categories .separator { /*border de los items del menu de la side bar*/
+    border-width: 1px 0px 1px 1px;
+    border-color: transparent;
+}
+
+.tweak-categories:selected,
+.tweak-categories:active,
+.tweak-categories:hover {
+    color: @theme_selected_fg_color;
+    background-color: #f00; 
+    padding: 0px 0px 0px 0px;
+
+}
+
+
+
+.tweak-category {
+    border-width: 1px 0 1px 0;
+    border-color: #D0F4FF;
+    box-shadow: none;
+        padding: 0px 0px 0px 0px;
+
+    }
+
+.tweak-category:hover {
+    color: @theme_fg_color;
+    text-shadow: 0 1px @hilight_shadow;
+    border-width: 2px 1px 1px 0;
+    border-color: alpha(#D0F4FF,0.8); /*transition effect on click*/
+    padding: 0px 0px 0px 0px;
+    
+}
+
+
+
+
+.tweak-category:selected {
+
+    background-color: transparent;
+    background-image: -gtk-gradient( linear, left top, left bottom,
+                    from (shade(@theme_selected_bg_color, 1.03)),
+                        color-stop (0.15, shade(@theme_selected_bg_color, 1.07)),
+                    to (shade(@theme_selected_bg_color, 1.07)));
+
+    transition: 350ms ease-in-out;
+    
+    color: @theme_selected_fg_color;
+    
+    border-color: shade(@theme_selected_bg_color, 0.9);
+    border-radius: 0px; 
+    
+    border-radius: 0 15px 15px 0;
+    
+    border-color: shade(@theme_selected_bg_color, 1.9);
+
+    border-width: 1px 1px 1px 0;
+    border-top-color: alpha(@light_shadow, 0.8);
+    border-bottom-color: @light_shadow;
+    border-style: solid;
+
+        
+    box-shadow: inset 0 1px shade(@theme_selected_bg_color, 0.9),
+                inset 0 -0px 0px 1px alpha(@theme_selected_bg_color, 0.7);
+}
+
+
+
+/* the container and tweaks in a group */
+.tweak-group {
+    padding: 6px;
+    background-color: @theme_bg_color;
+        border-width: 0px 0px 0px 0px;
+}
+
+.tweak {
+    padding-top: 6px;
+    background-color: @theme_bg_color;
+        border-width: 0px 0px 0px 0px;
+    border-color: @theme_bg_color;
+}
+
+.tweak:hover,
+.tweak:hover:active,
+.tweak:active {
+    padding: 0px 0px 0px 0px;
+    border-color:red;
+        border-width: 0px; /*caja de selección de cada linea de la ventana central del tweak*/
+    border-style: solid;
+}
+
+.tweak-titlebar-right { /*borders titulo "Apariencia"*/
+    border-left-width: 0;
+    border-top-left-radius: 0;
+}
+
+.tweak-titlebar-left { /*borders titulo "Tweaks"*/
+    border-right-width: 0px;
+    border-right-color: shade(@theme_bg_color, 0.94);
+    border-top-right-radius: 0;
+}
+
+
+
+/*bu*/
+.tweak-group-white{
+    background-color: @theme_bg_color;
+    border-color:red;
+        border-width: 0px;
+    border-style: solid;
+}
+
+.tweak-white,
+.tweak-white:hover {
+    background-color: @theme_bg_color;
+}
+
+
+
+
+
